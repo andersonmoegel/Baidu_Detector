@@ -1,87 +1,87 @@
-# Documentação do Projeto: Detector de BaiduNetdisk
+# Project Documentation: BaiduNetdisk Detector
 
-Este projeto tem como objetivo detectar a instalação do **BaiduNetdisk** (um serviço de armazenamento em nuvem) no sistema operacional Windows, verificar a presença de arquivos executáveis e pastas relacionadas à aplicação, e gerar um arquivo de log com essas informações. Além disso, a documentação também explica a funcionalidade de remoção de acentos no texto do log gerado.
+This project aims to detect the installation of **BaiduNetdisk** (a cloud storage service) on Windows operating systems, check for executable files and folders related to the application, and generate a log file with the findings. Additionally, this documentation also explains the functionality for removing accents from text in the generated log.
 
-## Estrutura do Projeto
+## Project Structure
 
-O script principal realiza as seguintes ações:
+The main script performs the following actions:
 
-1. **Detecção de instalação**: Verifica os diretórios comuns onde o BaiduNetdisk pode estar instalado.
-2. **Verificação de executáveis**: Procura pelo executável principal da aplicação nos diretórios encontrados.
-3. **Verificação de pastas adicionais**: Verifica a presença de pastas de configuração, cache, logs e recursos associadas ao BaiduNetdisk.
-4. **Remoção de acentos**: Normaliza e remove os acentos de todos os textos que aparecem no log gerado.
-5. **Geração de Log**: Gera um arquivo de log no diretório `C:\Windows\Temp\` com as informações encontradas.
+1. **Installation Detection**: Checks common directories where BaiduNetdisk might be installed.
+2. **Executable Check**: Looks for the main application executable in the found directories.
+3. **Additional Folder Check**: Verifies the presence of configuration, cache, log, and resource folders associated with BaiduNetdisk.
+4. **Accent Removal**: Normalizes and removes accents from all text entries in the generated log.
+5. **Log Generation**: Generates a log file in the `C:\Windows\Temp\` directory with the gathered information.
 
-## Funcionalidades
+## Features
 
-### 1. Função `remover_acentos(texto)`
-Remove acentos e caracteres especiais de um texto. Utiliza a normalização Unicode para remover caracteres com acentos.
+### 1. Function `remove_accents(text)`
+Removes accents and special characters from a given text. Uses Unicode normalization to remove accented characters.
 
-**Parâmetros**:
-- `texto` (str): Texto de entrada, que pode conter acentos.
+**Parameters**:
+- `text` (str): Input text that may contain accents.
 
-**Retorno**:
-- Retorna o texto sem acentos.
+**Returns**:
+- The text with accents removed.
 
-### 2. Função `detectar_baidunetdisk()`
-Detecta se o BaiduNetdisk está instalado no sistema e verifica a presença de executáveis e pastas relacionadas à aplicação.
+### 2. Function `detect_baidunetdisk()`
+Detects if BaiduNetdisk is installed on the system and checks for executables and folders related to the application.
 
-**Processos realizados**:
-- Verifica a presença das pastas de instalação comuns para o BaiduNetdisk.
-- Procura os executáveis principais do BaiduNetdisk.
-- Verifica a existência de pastas de configuração, cache, logs e recursos.
-- Salva um arquivo de log com os resultados.
+**Performed Tasks**:
+- Checks for common installation folders of BaiduNetdisk.
+- Looks for the main BaiduNetdisk executables.
+- Checks for the existence of configuration, cache, log, and resource folders.
+- Saves a log file with the results.
 
-**Passos**:
-1. Verifica a existência das pastas em caminhos comuns.
-2. Procura por executáveis, como `BaiduNetdisk.exe` ou `BaiduNetdiskApp.exe`.
-3. Checa a existência de outras pastas relacionadas (Config, Cache, Logs, Resources).
-4. Se encontrado, gera um arquivo de log no diretório `C:\Windows\Temp\` com a descrição do que foi encontrado.
-5. Se falhar ao salvar o log, exibe uma mensagem de erro.
+**Steps**:
+1. Checks for the presence of common directory paths.
+2. Searches for executables like `BaiduNetdisk.exe` or `BaiduNetdiskApp.exe`.
+3. Checks for other related folders (Config, Cache, Logs, Resources).
+4. If found, generates a log file in the `C:\Windows\Temp\` directory with a description of the findings.
+5. If log saving fails, an error message is displayed.
 
-## Dependências
+## Dependencies
 
-O script utiliza as seguintes bibliotecas:
-- `os`: Para manipulação de caminhos e arquivos no sistema.
-- `unicodedata`: Para a remoção de acentos de caracteres.
+The script uses the following libraries:
+- `os`: For file and path manipulation on the system.
+- `unicodedata`: For accent removal from characters.
 
-## Como Executar
+## How to Run
 
-Para executar o script, siga os passos abaixo:
+To run the script, follow the steps below:
 
-1. Clone ou baixe o repositório do projeto.
-2. Certifique-se de ter um ambiente Python configurado.
-3. Execute o script em um terminal ou prompt de comando:
+1. Clone or download the project repository.
+2. Make sure you have a configured Python environment.
+3. Run the script in a terminal or command prompt:
 
 ```bash
 python baidunetdisk_detector.py
 ```
 
-Após a execução, será gerado um arquivo de log em `C:\Windows\Temp\Baidu_Detector.txt` com as informações encontradas sobre a instalação do BaiduNetdisk.
+After execution, a log file will be generated in `C:\Windows\Temp\Baidu_Detector.txt` with the findings related to the BaiduNetdisk installation.
 
-## Exemplo de Saída de Log
+## Example Log Output
 
-O arquivo gerado pode conter informações como:
-
-```
-Pasta encontrada: C:\Program Files\BaiduNetdisk
-Executável encontrado: C:\Program Files\BaiduNetdisk\BaiduNetdisk.exe
-Pasta de Configuração encontrada: C:\Program Files\BaiduNetdisk\Config
-Pasta de Cache encontrada: C:\Program Files\BaiduNetdisk\Cache
-Pasta de Logs encontrada: C:\Program Files\BaiduNetdisk\Logs
-Pasta de Recursos encontrada: C:\Program Files\BaiduNetdisk\Resources
-```
-
-Caso o BaiduNetdisk não seja encontrado, o log será vazio ou conterá apenas a mensagem de falha.
-
-## Tratamento de Erros
-
-Caso ocorra algum erro durante a execução, como falha ao salvar o log ou ao acessar as pastas, será exibida a seguinte mensagem no console:
+The generated file may contain information such as:
 
 ```
-Erro ao salvar o log: [Mensagem de erro]
+Folder found: C:\Program Files\BaiduNetdisk
+Executable found: C:\Program Files\BaiduNetdisk\BaiduNetdisk.exe
+Configuration folder found: C:\Program Files\BaiduNetdisk\Config
+Cache folder found: C:\Program Files\BaiduNetdisk\Cache
+Logs folder found: C:\Program Files\BaiduNetdisk\Logs
+Resources folder found: C:\Program Files\BaiduNetdisk\Resources
 ```
 
-## Conclusão
+If BaiduNetdisk is not found, the log will be empty or contain only a failure message.
 
-Este script é útil para detectar a instalação do BaiduNetdisk em um sistema Windows e verificar a presença de seus arquivos e pastas associados. Ele facilita a administração de sistemas, especialmente quando se precisa verificar a instalação de aplicativos específicos sem a necessidade de interface gráfica.
+## Error Handling
+
+If an error occurs during execution, such as failure to save the log or access folders, the following message will be shown in the console:
+
+```
+Error saving log: [Error message]
+```
+
+## Conclusion
+
+This script is useful for detecting BaiduNetdisk installations on a Windows system and checking for the presence of its associated files and folders. It simplifies system administration, especially when checking for specific applications without the need for a graphical interface.
